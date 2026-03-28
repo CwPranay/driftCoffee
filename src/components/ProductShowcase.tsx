@@ -11,8 +11,8 @@ export function ProductShowcase() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // The high-quality signed URL for the signature product
-  const imageUrl = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/sign/coffee/frame_000_delay-0.041s.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yMGY4Y2FmZS05MDc5LTQzYTAtYTQ5OC1jY2Q1NDMyNzU5MzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJjb2ZmZWUvZnJhbWVfMDAwX2RlbGF5LTAuMDQxcy53ZWJwIiwiaWF0IjoxNzc0NjcyMTU3LCJleHAiOjE5MzIzNTIxNTd9.K9fCwi7v9uXaZwNn7eZlpzlN0hfOWek1jVjUU-NAD5E";
+  // The new signature product image URL
+  const imageUrl = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/sign/coffee2/coffee.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yMGY4Y2FmZS05MDc5LTQzYTAtYTQ5OC1jY2Q1NDMyNzU5MzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJjb2ZmZWUyL2NvZmZlZS5wbmciLCJpYXQiOjE3NzQ2NzY0NTgsImV4cCI6MTkzMjM1NjQ1OH0.h9Z2S06P_j5Xwy6YqfOjub7-Jvu0oDrizOrwCpIaJc";
 
   return (
     <section id="menu" className="py-24 px-6 bg-white overflow-hidden">
@@ -22,7 +22,7 @@ export function ProductShowcase() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="relative aspect-square rounded-[24px] overflow-hidden bg-secondary/20 flex items-center justify-center p-12 shadow-2xl"
+          className="relative aspect-square rounded-[24px] overflow-hidden bg-secondary/20 flex items-center justify-center shadow-2xl"
         >
           {/* Shimmer Effect while loading */}
           {!isLoaded && !hasError && (
@@ -34,11 +34,10 @@ export function ProductShowcase() {
           <Image
             src={imageUrl}
             alt="The Signature Drift Iced Coffee"
-            width={600}
-            height={600}
+            fill
             className={cn(
-              "object-contain drop-shadow-2xl z-10 scale-110 hover:scale-115 transition-all duration-700 ease-in-out",
-              isLoaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+              "object-cover transition-all duration-700 ease-in-out",
+              isLoaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
             )}
             onLoadingComplete={() => setIsLoaded(true)}
             onError={() => setHasError(true)}
