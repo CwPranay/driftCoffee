@@ -29,6 +29,7 @@ export function Navbar() {
   }, []);
 
   return (
+    <>
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 px-6 md:px-12 transition-all duration-500",
@@ -75,15 +76,44 @@ export function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
-      {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b md:hidden">
-          <div className="flex flex-col p-8 gap-6">
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)}>Experience</a>
-            <a href="#menu" onClick={() => setMobileMenuOpen(false)}>Menu</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}>Our Origin</a>
+      
+    </nav>
+    {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex flex-col px-8 py-10 md:hidden animate-in fade-in duration-300">
+
+          {/* TOP BAR */}
+          <div className="flex items-center justify-between mb-12">
+            <span className="text-xl font-bold text-primary">Drift</span>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-md bg-primary text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* NAV LINKS */}
+          <div className="flex flex-col gap-8 text-lg font-semibold text-primary">
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)}>
+              Experience
+            </a>
+            <a href="#menu" onClick={() => setMobileMenuOpen(false)}>
+              Menu
+            </a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>
+              Our Origin
+            </a>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-auto">
+            <button className="w-full py-5 bg-primary text-white rounded-full uppercase tracking-[0.2em] text-[10px] font-bold">
+              Reserve Beans
+            </button>
           </div>
         </div>
       )}
-    </nav>
+    </>
+    
   );
 }
