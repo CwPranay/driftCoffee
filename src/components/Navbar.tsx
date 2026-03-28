@@ -10,7 +10,7 @@ export function Navbar() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
 
   useEffect(() => {
-    const hero = document.getElementById("hero");
+    const hero = document.getElementById("hero1");
 
     if (!hero) return;
 
