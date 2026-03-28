@@ -10,12 +10,13 @@ interface PreloaderProps {
 export function Preloader({ onComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const totalFrames = 30; // Preload the first 30 frames for a smooth start
+  const BASE_URL = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/public/coffee/frame_";
 
   useEffect(() => {
     let loadedCount = 0;
     const framesToPreload = Array.from({ length: totalFrames }, (_, i) => {
       const index = i.toString().padStart(3, "0");
-      return `https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/sign/coffee/frame_${index}_delay-0.041s.webp`;
+      return `${BASE_URL}${index}_delay-0.041s.webp`;
     });
 
     const preloadImage = (url: string) => {

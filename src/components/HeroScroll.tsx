@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 
 const FRAME_COUNT = 119;
-const BASE_URL = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/sign/coffee/frame_";
+const BASE_URL = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/public/coffee/frame_";
 
 const getFrameUrl = (index: number) => {
   const paddedIndex = index.toString().padStart(3, "0");
