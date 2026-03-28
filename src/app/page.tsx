@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -5,7 +6,11 @@ import { Preloader } from "@/components/Preloader";
 import { Navbar } from "@/components/Navbar";
 import { HeroScroll } from "@/components/HeroScroll";
 import { ProductShowcase } from "@/components/ProductShowcase";
+import { ExperienceSection } from "@/components/ExperienceSection";
+import { MenuPreview } from "@/components/MenuPreview";
+import { OriginSection } from "@/components/OriginSection";
 import { FlavorGenerator } from "@/components/FlavorGenerator";
+import { CTASection } from "@/components/CTASection";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -25,18 +30,20 @@ export default function Home() {
           >
             <Navbar />
             
-            {/* Cinematic Hero */}
-            <section id="experience">
-              <HeroScroll />
-            </section>
+            <HeroScroll />
 
-            {/* Product Section */}
             <ProductShowcase />
 
-            {/* AI Experience */}
+            <ExperienceSection />
+
+            <MenuPreview />
+
+            <OriginSection />
+
             <FlavorGenerator />
 
-            {/* Footer */}
+            <CTASection />
+
             <footer className="py-24 px-6 border-t border-primary/10 bg-white">
               <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
                 <div className="space-y-4 max-w-sm">
@@ -50,9 +57,9 @@ export default function Home() {
                   <div className="space-y-4">
                     <h4 className="font-bold text-sm uppercase tracking-widest text-accent">Discover</h4>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li><a href="#" className="hover:text-primary transition-colors">Our Menu</a></li>
-                      <li><a href="#" className="hover:text-primary transition-colors">Origins</a></li>
-                      <li><a href="#" className="hover:text-primary transition-colors">Brewing Guides</a></li>
+                      <li><a href="#menu" className="hover:text-primary transition-colors">Our Menu</a></li>
+                      <li><a href="#about" className="hover:text-primary transition-colors">Origins</a></li>
+                      <li><a href="#experience" className="hover:text-primary transition-colors">Experience</a></li>
                     </ul>
                   </div>
                   <div className="space-y-4">

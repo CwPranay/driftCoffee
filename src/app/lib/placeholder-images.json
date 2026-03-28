@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -11,6 +12,42 @@
       "description": "Minimalist premium coffee shop",
       "imageUrl": "https://picsum.photos/seed/coffee2/1200/800",
       "imageHint": "minimalist cafe"
+    },
+    {
+      "id": "pour-over-action",
+      "description": "Close up of a precise pour over",
+      "imageUrl": "https://picsum.photos/seed/coffee3/800/1000",
+      "imageHint": "coffee pour"
+    },
+    {
+      "id": "origin-farm",
+      "description": "High altitude coffee plantation",
+      "imageUrl": "https://picsum.photos/seed/coffee4/1200/800",
+      "imageHint": "coffee farm"
+    },
+    {
+      "id": "menu-item-1",
+      "description": "Premium Iced Latte",
+      "imageUrl": "https://picsum.photos/seed/coffee5/600/600",
+      "imageHint": "iced coffee"
+    },
+    {
+      "id": "menu-item-2",
+      "description": "Signature Cold Brew",
+      "imageUrl": "https://picsum.photos/seed/coffee6/600/600",
+      "imageHint": "cold brew"
+    },
+    {
+      "id": "menu-item-3",
+      "description": "Cascara Tonic",
+      "imageUrl": "https://picsum.photos/seed/coffee7/600/600",
+      "imageHint": "coffee drink"
+    },
+    {
+      "id": "menu-item-4",
+      "description": "Nitro Reserve",
+      "imageUrl": "https://picsum.photos/seed/coffee8/600/600",
+      "imageHint": "nitro coffee"
     }
   ]
 }
