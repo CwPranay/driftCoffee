@@ -84,13 +84,13 @@ export function HeroScroll() {
             id="heroImage"
             src={currentFrameUrl}
             alt="Drift Coffee Background Animation"
-            className="w-full h-full object-cover object-[right_center] pointer-events-none translate-y-[5%] scale-105"
+            className="w-full h-full object-cover object-[center_60%] pointer-events-none translate-y-[8%] scale-105"
           />
         </div>
 
         {/* Cinematic Content Overlay */}
-        <div className="relative z-10 h-full w-full flex items-center px-[8%] md:pl-[12%] md:pr-0 pt-[100px]">
-          <div className="max-w-[550px] w-full">
+        <div className="relative z-10 h-full w-full flex items-center px-[8%] md:pl-[12%] md:pr-0">
+          <div className="max-w-[480px] w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={phase}
@@ -98,7 +98,7 @@ export function HeroScroll() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="space-y-6"
+                className="flex flex-col gap-6 md:gap-8"
               >
                 <motion.span 
                   initial={{ opacity: 0 }}
@@ -107,10 +107,10 @@ export function HeroScroll() {
                 >
                   The Art of the Slow Pour
                 </motion.span>
-                <h1 className="text-6xl md:text-8xl font-headline font-black tracking-tighter text-primary leading-[1.1] whitespace-pre-line">
+                <h1 className="text-5xl md:text-7xl font-headline font-bold tracking-tight text-primary leading-[1.2] whitespace-pre-line">
                   {textStates[phase].title}
                 </h1>
-                <p className="text-xl md:text-2xl text-primary/70 leading-[1.6] font-medium max-w-[480px]">
+                <p className="text-lg md:text-xl text-primary/70 leading-[1.6] font-medium tracking-normal">
                   {textStates[phase].subtext}
                 </p>
                 
@@ -118,7 +118,7 @@ export function HeroScroll() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="pt-8"
+                  className="mt-4 md:mt-6"
                 >
                   <a 
                     href="#menu" 

@@ -20,19 +20,19 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-6 md:px-12",
-        isScrolled ? "glass-morphism py-3 shadow-sm" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 px-6 md:px-12",
+        isScrolled ? "glass-morphism py-4 shadow-sm" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <a href="#" className="text-2xl font-headline tracking-tighter text-primary">
+          <a href="#" className="text-2xl font-headline tracking-tighter text-primary font-black">
             Drift
           </a>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#experience" className="text-sm font-medium hover:text-accent transition-colors">Experience</a>
-            <a href="#menu" className="text-sm font-medium hover:text-accent transition-colors">Menu</a>
-            <a href="#about" className="text-sm font-medium hover:text-accent transition-colors">Our Origin</a>
+          <div className="hidden md:flex items-center gap-10">
+            <a href="#experience" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Experience</a>
+            <a href="#menu" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Menu</a>
+            <a href="#about" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Our Origin</a>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export function Navbar() {
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </Button>
-          <Button className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-accent transition-all duration-300 rounded-full px-6">
+          <Button className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-accent transition-all duration-500 rounded-full px-8 text-[10px] font-bold uppercase tracking-[0.2em]">
             Reserve Beans
           </Button>
         </div>
@@ -51,12 +51,12 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background border-b md:hidden animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="flex flex-col p-6 gap-4">
-            <a href="#experience" className="text-lg font-medium py-2">Experience</a>
-            <a href="#menu" className="text-lg font-medium py-2">Menu</a>
-            <a href="#about" className="text-lg font-medium py-2">Our Origin</a>
-            <Button className="w-full bg-primary mt-4">Order Now</Button>
+        <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b md:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex flex-col p-8 gap-6">
+            <a href="#experience" className="text-sm font-bold uppercase tracking-[0.2em]">Experience</a>
+            <a href="#menu" className="text-sm font-bold uppercase tracking-[0.2em]">Menu</a>
+            <a href="#about" className="text-sm font-bold uppercase tracking-[0.2em]">Our Origin</a>
+            <Button className="w-full bg-primary mt-4 py-6 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]">Reserve Now</Button>
           </div>
         </div>
       )}
