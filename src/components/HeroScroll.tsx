@@ -79,7 +79,7 @@ export function HeroScroll() {
   ];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-background">
+    <div id="hero" ref={containerRef} className="relative h-[400vh] bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
 
         {/* Full-Screen Animation Background */}
