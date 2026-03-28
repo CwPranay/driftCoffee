@@ -84,7 +84,7 @@ export function HeroScroll() {
             id="heroImage"
             src={currentFrameUrl}
             alt="Drift Coffee Background Animation"
-            className="w-full h-full object-cover object-[center_60%] pointer-events-none translate-y-[8%] scale-105"
+            className="w-full h-full object-cover object-center pointer-events-none"
           />
         </div>
 
