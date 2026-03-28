@@ -30,14 +30,11 @@ export function HeroScroll() {
 
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (v) => {
-      // 1. Update Frame Animation
+      // 1. Update Frame Animation (0 to 118)
       const index = Math.min(Math.floor(v * (FRAME_COUNT - 1)), FRAME_COUNT - 1);
       setCurrentFrameUrl(getFrameUrl(index));
 
-      // 2. Update Text Phases
-      // 0% -> 30%: Phase 0
-      // 30% -> 70%: Phase 1
-      // 70% -> 100%: Phase 2
+      // 2. Update Text Phases based on scroll progress
       if (v < 0.3) {
         if (phase !== 0) setPhase(0);
       } else if (v < 0.7) {
@@ -51,14 +48,14 @@ export function HeroScroll() {
 
   // Performance: Preload frames to avoid flickering
   useEffect(() => {
-    // Immediate preload for first 20 frames
-    for (let i = 0; i < 20; i++) {
+    // Immediate preload for first 30 frames
+    for (let i = 0; i < 30; i++) {
       const img = new Image();
       img.src = getFrameUrl(i);
     }
     // Background preload for the rest
     const preloadAll = async () => {
-      for (let i = 20; i < FRAME_COUNT; i++) {
+      for (let i = 30; i < FRAME_COUNT; i++) {
         const img = new Image();
         img.src = getFrameUrl(i);
       }
@@ -83,66 +80,81 @@ export function HeroScroll() {
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-background">
-      <div className="sticky top-0 h-screen w-full flex flex-col md:flex-row overflow-hidden">
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
         
-        {/* Left Side: Text Content (Synced with Scroll) */}
-        <div className="flex-1 flex items-center justify-center px-8 md:px-16 z-20 order-2 md:order-1">
-          <div className="max-w-xl w-full">
+        {/* Full-Screen Animation Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            id="heroImage"
+            src={currentFrameUrl}
+            alt="Drift Coffee Background Animation"
+            className="w-full h-full object-cover pointer-events-none transition-opacity duration-300"
+            style={{ transitionProperty: 'opacity' }}
+          />
+          
+          {/* Readability Overlay: Gradient from left to right */}
+          <div 
+            className="absolute inset-0 z-1" 
+            style={{
+              background: 'linear-gradient(to right, rgba(245, 230, 211, 0.95) 0%, rgba(245, 230, 211, 0.7) 40%, rgba(245, 230, 211, 0.2) 100%)'
+            }}
+          />
+        </div>
+
+        {/* Cinematic Content Overlay */}
+        <div className="relative z-10 h-full w-full flex items-center px-[8%] md:px-[10%]">
+          <div className="max-w-2xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={phase}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="space-y-6"
               >
-                <h2 className="text-xs uppercase tracking-[0.5em] text-accent font-bold">
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-xs uppercase tracking-[0.5em] text-accent font-bold block mb-2"
+                >
                   The Art of the Slow Pour
-                </h2>
-                <h1 className="text-4xl md:text-7xl font-headline font-black tracking-tighter text-primary leading-[1.1]">
+                </motion.span>
+                <h1 className="text-5xl md:text-8xl font-headline font-black tracking-tighter text-primary leading-[1] drop-shadow-sm">
                   {textStates[phase].title}
                 </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+                <p className="text-xl md:text-2xl text-primary/80 leading-relaxed max-w-lg font-medium">
                   {textStates[phase].subtext}
                 </p>
+                
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="pt-8"
+                >
+                  <a 
+                    href="#menu" 
+                    className="inline-flex items-center justify-center px-10 py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                  >
+                    Experience Drift
+                  </a>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Right Side: Animated Image Frame Sequence */}
-        <div className="flex-1 relative flex items-center justify-center bg-secondary/10 order-1 md:order-2">
-          {/* Subtle Parallax Detail: Background Gradient Blur */}
-          <motion.div 
-            style={{ 
-              scale: useSpring(useScroll({ target: containerRef }).scrollYProgress, { stiffness: 50, damping: 20 }),
-              opacity: 0.5
-            }}
-            className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-primary/5 blur-3xl rounded-full"
-          />
-
-          <div className="relative w-full h-[60vh] md:h-full max-w-2xl flex items-center justify-center">
-            <img
-              id="heroImage"
-              src={currentFrameUrl}
-              alt="Drift Coffee Animation Frame"
-              className="w-full h-full object-contain pointer-events-none drop-shadow-[0_35px_35px_rgba(143,89,36,0.15)] transition-opacity duration-300"
-              style={{ transitionProperty: 'opacity' }}
-            />
-          </div>
-        </div>
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 1 }}
+          style={{ opacity: useSpring(scrollYProgress, { stiffness: 100, damping: 30 }).on("change", (v) => Math.max(0, 1 - v * 8)) }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary/60">Scroll to Explore</span>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-primary/40 to-transparent" />
+        </motion.div>
       </div>
-
-      {/* Visual Indicator: Scroll Hint */}
-      <motion.div 
-        initial={{ opacity: 1 }}
-        style={{ opacity: useSpring(useScroll({ target: containerRef }).scrollYProgress, { stiffness: 100, damping: 30 }).on("change", (v) => 1 - v * 5) }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary/40">Scroll to Explore</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-primary/20 to-transparent" />
-      </motion.div>
     </div>
   );
 }
