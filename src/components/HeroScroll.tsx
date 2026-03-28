@@ -90,7 +90,7 @@ export function HeroScroll() {
 
         {/* Cinematic Content Overlay */}
         <div className="relative z-10 h-full w-full flex items-center px-[8%] md:pl-[12%] md:pr-0">
-          <div className="max-w-[480px] w-full">
+          <div className="max-w-[480px] w-full pt-20 md:pt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={phase}
