@@ -1,0 +1,16 @@
+{
+  "placeholderImages": [
+    {
+      "id": "coffee-bean-texture",
+      "description": "Macro coffee beans texture",
+      "imageUrl": "https://picsum.photos/seed/coffee1/1920/1080",
+      "imageHint": "coffee beans"
+    },
+    {
+      "id": "coffee-shop-interior",
+      "description": "Minimalist premium coffee shop",
+      "imageUrl": "https://picsum.photos/seed/coffee2/1200/800",
+      "imageHint": "minimalist cafe"
+    }
+  ]
+}
