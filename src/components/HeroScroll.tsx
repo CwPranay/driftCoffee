@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence, useTransform } from "framer-motion";
 
 const FRAME_COUNT = 119;
 const BASE_URL = "https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/public/coffee/frame_";
+
 
 const getFrameUrl = (index: number) => {
   const paddedIndex = index.toString().padStart(3, "0");
@@ -13,13 +14,14 @@ const getFrameUrl = (index: number) => {
 
 export function HeroScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentFrameUrl, setCurrentFrameUrl] = useState(getFrameUrl(0));
+  const imgRef = useRef<HTMLImageElement>(null);
   const [phase, setPhase] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+  const scrollFade = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -30,7 +32,9 @@ export function HeroScroll() {
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (v) => {
       const index = Math.min(Math.floor(v * (FRAME_COUNT - 1)), FRAME_COUNT - 1);
-      setCurrentFrameUrl(getFrameUrl(index));
+      if (imgRef.current) {
+        imgRef.current.src = getFrameUrl(index);
+      }
 
       if (v < 0.3) {
         if (phase !== 0) setPhase(0);
@@ -77,12 +81,13 @@ export function HeroScroll() {
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        
+
         {/* Full-Screen Animation Background */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             id="heroImage"
-            src={currentFrameUrl}
+            ref={imgRef}
+            src={getFrameUrl(0)}
             alt="Drift Coffee Background Animation"
             className="w-full h-full object-cover object-center pointer-events-none"
           />
@@ -100,7 +105,7 @@ export function HeroScroll() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="flex flex-col gap-6 md:gap-8"
               >
-                <motion.span 
+                <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="text-[10px] uppercase tracking-[0.6em] text-accent font-bold block mb-2"
@@ -113,15 +118,15 @@ export function HeroScroll() {
                 <p className="text-lg md:text-xl text-primary/70 leading-[1.6] font-medium tracking-normal">
                   {textStates[phase].subtext}
                 </p>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                   className="mt-4 md:mt-6"
                 >
-                  <a 
-                    href="#menu" 
+                  <a
+                    href="#menu"
                     className="inline-flex items-center justify-center px-12 py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-accent transition-all duration-500 shadow-2xl hover:-translate-y-1"
                   >
                     Experience Drift
@@ -133,14 +138,13 @@ export function HeroScroll() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 1 }}
-          style={{ 
-            opacity: useSpring(scrollYProgress, { stiffness: 100, damping: 30 }).on("change", (v) => Math.max(0, 1 - v * 10)) 
-          }}
+        <motion.div
+          style={{ opacity: scrollFade }}
           className="absolute bottom-12 left-[12%] z-30 flex flex-col items-start gap-3"
         >
-          <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-primary/40">Scroll to Explore</span>
+          <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-primary/40">
+            Scroll to Explore
+          </span>
           <div className="w-[1px] h-20 bg-gradient-to-b from-primary/30 to-transparent" />
         </motion.div>
       </div>

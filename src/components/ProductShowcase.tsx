@@ -28,27 +28,19 @@ export function ProductShowcase() {
           {!isLoaded && !hasError && (
             <div className="absolute inset-0 z-20 animate-pulse bg-gradient-to-r from-secondary/30 via-secondary/50 to-secondary/30" />
           )}
-          
+
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent z-0" />
-          
-          <Image
-            src={imageUrl}
+
+          <img
+            src="https://mnjjesosykmgfmnfbwaz.supabase.co/storage/v1/object/public/coffee2/coffee.png"
             alt="The Signature Drift Iced Coffee"
-            fill
-            className={cn(
-              "object-cover transition-all duration-700 ease-in-out",
-              isLoaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
-            )}
-            onLoadingComplete={() => setIsLoaded(true)}
+            onLoad={() => setIsLoaded(true)}
             onError={() => setHasError(true)}
-            priority
+            className="object-cover w-full h-full scale-105 transition-all duration-700"
           />
 
-          {/* Fallback Shimmer if image fails */}
-          {hasError && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center bg-secondary/10 backdrop-blur-sm">
-               <div className="w-full h-full animate-pulse bg-gradient-to-r from-muted via-muted/40 to-muted" />
-            </div>
+          {!isLoaded && !hasError && (
+            <div className="absolute inset-0 z-20 animate-pulse bg-gradient-to-r from-secondary/30 via-secondary/50 to-secondary/30" />
           )}
         </motion.div>
 
@@ -74,7 +66,7 @@ export function ProductShowcase() {
               Explore the Menu
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/5 rounded-full px-8 h-14">
+            <Button size="lg" variant="outline" className="border-primary hover:text:primary text-primary hover:bg-primary/5 rounded-full px-8 h-14">
               Subscription Plans
             </Button>
           </div>

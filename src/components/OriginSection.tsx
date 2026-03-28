@@ -48,7 +48,7 @@ export function OriginSection() {
               </div>
             </div>
 
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary/5 rounded-full px-10 h-14 uppercase tracking-[0.2em] font-bold text-[10px]">
+            <Button variant="outline" className="border-primary hover:text-primary text-primary hover:bg-primary/5 rounded-full px-10 h-14 uppercase tracking-[0.2em] font-bold text-[10px]">
               Learn Our Craft
             </Button>
           </motion.div>
@@ -61,16 +61,14 @@ export function OriginSection() {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-2xl">
-              {farmImage && (
-                <Image
-                  src={farmImage.imageUrl}
-                  alt="Coffee Farm Origin"
-                  fill
-                  className="object-cover"
-                  data-ai-hint={farmImage.imageHint}
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
+              <Image
+                src="/origin/origin.webp"
+                alt="Coffee Origin"
+                fill
+                className="object-cover"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
             {/* Floating Decorative Element */}
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-accent rounded-full opacity-10 blur-3xl" />

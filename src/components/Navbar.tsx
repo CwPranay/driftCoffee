@@ -26,15 +26,11 @@ export function Navbar() {
           <a href="#" className="text-2xl font-headline tracking-tighter text-primary font-black">
             Drift
           </a>
-          <div className="hidden md:flex items-center gap-10">
-            <a href="#experience" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Experience</a>
-            <a href="#menu" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Menu</a>
-            <a href="#about" className="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors">Our Origin</a>
-          </div>
+          
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="text-primary hover:text-accent">
+          <Button variant="ghost" size="icon" className="text-primary hover:text-white">
             <ShoppingBag className="w-5 h-5" />
           </Button>
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
